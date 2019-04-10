@@ -1,0 +1,13 @@
+- name: APP Mount shared dir. Register {{ userweb }} user id
+  shell: id -u {{ userweb }}
+  changed_when: false
+  register: user_id
+
+- name: APP Mount shared dir. Register {{ userweb }} group id
+  shell: id -g {{ userweb }}
+  changed_when: false
+  register: group_id
+
+- name: APP Remount shared folder
+  shell: mount -t vboxsf -o uid={{ user_id.stdout }},gid={{ group_id.stdout }},dmode=750,fmode=640 {{ shareddir }} {{ appdir }} warn=no
+  changed_when: false
