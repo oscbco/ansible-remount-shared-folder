@@ -9,5 +9,5 @@
   register: group_id
 
 - name: APP Remount shared folder
-  shell: mount -t vboxsf -o uid={{ user_id.stdout }},gid={{ group_id.stdout }},dmode=750,fmode=640 {{ shareddir }} {{ appdir }} warn=no
+  shell: mount -t vboxsf -o uid={{ user_id.stdout }},gid={{ group_id.stdout }},dmode=750,fmode=640 {{ shared_dir }} {{ appdir }} warn=no
   changed_when: false
